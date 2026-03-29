@@ -10,16 +10,17 @@ include('./php/verificar.php');
     <title>Início</title>
     <link rel="stylesheet" href="home.css">
 </head>
-<body>oi
-    <header class = "header">
-        <nav class = "nav">
-            <a href="" class="logo"></a>
+<body>
+    <nav class="navbar">
+        <img src="imagens/logo/logoPngbranco.png" alt="">
+        <div class="navbar-links">
             <ul>
-                <li><a href="">Sobre</a></li>
-                <li><a href="">Projetos</a></li>
-                <li><a href="">Contato</a></li>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Emprestar</a></li>
+                <li><a href="#">Doar</a></li>
+                <li><a href="#">Usuário</a></li>
             </ul>
-        </nav>
-    </header>
+        </div>
+    </nav>
 </body>
 </html>
