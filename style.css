@@ -16,8 +16,8 @@ body{
 .conteudo_login_cadastro{
     background-color: rgb(243, 243, 243);
     width: 100%;
-    max-width: 500px;    /* Não passa de 500px ou 600px em telas grandes */
-    height: auto;        /* Deixe a altura crescer conforme o conteúdo */
+    max-width: 500px;    
+    height: auto;        
     padding: 40px 20px;
     border-radius: 30px;
 
