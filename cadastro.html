@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Cadastro</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class = "conteudo_login_cadastro">
 
         <img src="imagens/user.png" width="110px" alt="">
-        <p id = "login">Login</p>
-        <form action="login.php" method = "POST">
+        <p id = "login">Cadastro</p>
+        <form action="cadastro.php" method = "POST">
             <input type="text" name = "usuario" placeholder="usuário" class="inputs" required>
             <input type="password" name = "senha" placeholder="senha" class="inputs" required>
-            <button type="submit" class = "botao">Entrar</button>
+            <input type="password" name = "email" placeholder="e-mail" class="inputs" required>
+            <button type="submit" class = "botao">Cadastrar</button>
         </form>
 
-        <p id = "texto_conta">não tem conta?</p>
-        <a href="cadastro.html" id = "link">cadastre-se</a>
+        <p id = "texto_conta">Já tem uma conta?</p>
+        <a href="login.html" id = "link">login</a>
     </div>
 </body>
 </html>

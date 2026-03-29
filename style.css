@@ -1,0 +1,102 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: rgb(230, 230, 230);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100vh;
+
+}
+
+.conteudo_login_cadastro{
+    background-color: rgb(243, 243, 243);
+    width: 100%;
+    max-width: 500px;    /* Não passa de 500px ou 600px em telas grandes */
+    height: auto;        /* Deixe a altura crescer conforme o conteúdo */
+    padding: 40px 20px;
+    border-radius: 30px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+
+    text-align: center;
+    box-shadow: rgba(17, 17, 26, 0.05) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 0px 8px;
+
+    font-family: sans-serif;
+    font-size: 20px;
+    color: rgb(0, 0, 0);
+    
+}
+
+#login{
+    color: rgb(0, 0, 0);
+    margin-top: -10px;
+    margin-bottom: -15px;
+}
+
+#texto_conta{
+    margin-top: 15px;
+    font-size: 18px;
+}
+
+#link{
+    font-size: 18px;
+    color: rgb(0, 183, 255);
+    text-decoration: none;
+    margin-top: -10px;
+}
+
+.inputs{
+    box-sizing: border-box;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    border: 20px;
+    transition: 1s;
+    text-decoration: none;
+    padding-left: 20px;
+}
+
+
+
+.inputs:hover{
+    box-shadow: rgba(0, 183, 255, 0.404) 0px 0px 0px 3px;
+}
+
+.inputs:focus {
+    outline: 2px solid rgba(0, 183, 255, 0.473); 
+}
+
+.botao{
+    margin-top: 25px;
+    width: 105px;
+    height: 50px;
+    
+    cursor: pointer;
+    background-color: rgb(0, 183, 255);
+    color: white;
+    border-radius: 10px;
+    border: none;
+    transition: 1s;
+    font-size: 15px;
+    
+}
+
+.botao:hover{
+    background-color: rgb(0, 153, 255);
+    transform: scale(1.10);
+    font-size: 18px;
+    max-width: 100%;
+}
