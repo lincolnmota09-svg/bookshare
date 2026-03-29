@@ -10,7 +10,7 @@ include('./php/verificar.php');
     <title>Início</title>
     <link rel="stylesheet" href="home.css">
 </head>
-<body>
+<body>oi
     <header class = "header">
         <nav class = "nav">
             <a href="" class="logo"></a>
