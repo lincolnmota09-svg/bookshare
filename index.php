@@ -22,6 +22,6 @@ include('./php/verificar.php');
             </ul>
         </nav>
     </header>
-    ola
+    
 </body>
 </html>
