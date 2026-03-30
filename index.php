@@ -20,7 +20,7 @@ include('./php/verificar.php');
                 <li><a href="#">Doar</a></li>
                 <li><a href="#">Usuário</a></li>
             </ul>
-        </div>
-    </nav>
+        </nav>
+    </header>
 </body>
 </html>
