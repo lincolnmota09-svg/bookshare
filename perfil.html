@@ -15,6 +15,26 @@
   --cor-sub: #777;
   --branco: #fff;
 }
+.card.add {
+  cursor: progress;
+  font-size: 50px;
+  color: #666;
+  transition: 0.2s;
+  width: 40px;
+  height: 50px;
+  margin-top: 100px;
+  margin-left: 30px;
+  position: relative;
+  padding-bottom: -50px;
+  display: flex;
+  align-items: center;     /* centraliza vertical */
+  justify-content: center; /* centraliza horizontal */
+}
+
+.card.add:hover {
+  background: #eaeaea;
+  color: #000;
+}
 
 * {
   margin: 0;
@@ -167,6 +187,8 @@ body {
     flex-direction: column;
     gap: 15px;
   }
+  /* botão de add */
+
 }
 </style>
 </head>
@@ -204,27 +226,30 @@ body {
     </div>
 
     <div class="secao">
-      <h3>📖 Favoritos</h3>
+      <h3>📖 Adicionados</h3>
       <div class="grid-livros">
         
         <div class="livro">
-          <img src="https://github.com/lincolnmota09-svg/bookshare/blob/main/imagens/usuario/edilson.png?raw=true">
+          <img style="width: 90%; height: 90%; object-fit: cover;" src="https://github.com/lincolnmota09-svg/bookshare/blob/main/imagens/capas-livros/capa6.png?raw=true">
           <p>Livro 1</p>
         </div>
 
         <div class="livro">
-          <img src="https://via.placeholder.com/120x180">
+          <img style="width: 90%; height: 90%; object-fit: cover;" src="https://github.com/lincolnmota09-svg/bookshare/blob/main/imagens/capas-livros/capa2.jpg?raw=true">
           <p>Livro 2</p>
         </div>
 
         <div class="livro">
-          <img src="https://via.placeholder.com/120x180">
+          <img style="width: 90%; height: 90%; object-fit: cover;" src="https://github.com/lincolnmota09-svg/bookshare/blob/main/imagens/capas-livros/capa5.png?raw=true">
           <p>Livro 3</p>
         </div>
 
-        <div class="livro">
-          <img src="https://via.placeholder.com/120x180">
-          <p>Livro 4</p>
+        
+          <!-- BOTÃO ADD -->
+          <div class="card add">
+            <span>+</span>
+           </div>
+          </div>
         </div>
 
       </div>
