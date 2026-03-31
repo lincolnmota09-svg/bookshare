@@ -1,3 +1,8 @@
+<?php
+include('../php/verificar.php');
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -15,12 +20,10 @@
 
       <!-- Nav desktop -->
       <nav>
-        <a href="../Home/inicio.html" class="active">início</a>
-        <a href="../Disponiveis/disponiveis.html">Disponíveis</a>
-        <a href="../Clube/clube.html">Clube</a> 
-        <a href="../Emprestar/emprestar.html">Emprestar</a>
-        <a href="../Doar/doar.html">Doar</a>
-        <a href="../Perfil/perfil.html">Perfil</a>
+        <a href="../Home/inicio.php" class="active">início</a>
+        <a href="../Clube/clube.php">Clube</a> 
+        <a href="../Emprestar/emprestar.php">Emprestar</a>
+        <a href="../Perfil/perfil.html.php">Perfil</a>
       </nav>
     </div>
 
@@ -54,12 +57,10 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="#" class="active">início</a>
-    <a href="#">Disponíveis</a>
-    <a href="#">Clube</a> 
-    <a href="file:///C:/Users/iicaro/bookshare/emprestar.html">Emprestar</a>
-    <a href="file:///C:/Users/iicaro/bookshare/doar.html">Doar</a>
-    <a href="#">Perfil</a>
+    <a href="../Home/inicio.php" class="active">início</a>
+    <a href="../Clube/clube.php">Clube</a> 
+    <a href="../Emprestar/emprestar.php">Emprestar</a>
+    <a href="../Perfil/perfil.php">Perfil</a>
 
 
     <div class="mobile-search">

@@ -14,12 +14,10 @@
 
       <!-- Nav desktop -->
   <nav>
-        <a href="../Home/inicio.html" class="active">início</a>
-        <a href="../Disponiveis/disponiveis.html">Disponíveis</a>
-        <a href="../Clube/clube.html">Clube</a> 
-        <a href="../Emprestar/emprestar.html">Emprestar</a>
-        <a href="../Doar/doar.html">Doar</a>
-        <a href="../Perfil/perfil.html">Perfil</a>
+        <a href="../Home/inicio.php" class="active">início</a>
+        <a href="../Clube/clube.php">Clube</a> 
+        <a href="../Emprestar/emprestar.php">Emprestar</a>
+        <a href="../Perfil/perfil.php">Perfil</a>
       </nav>
     </div>
 
@@ -49,6 +47,22 @@
         <span></span>
       </button>
     </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+    <a href="../Home/inicio.php" class="active" >início</a>
+    <a href="../Clube/clube.php">Clube</a> 
+    <a href="../Emprestar/emprestar.php">Emprestar</a>
+    <a href="../Perfil/perfil.php" >Perfil</a>
+
+
+    <div class="mobile-search">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Search..." />
+    </div>
+
+  </div>
   </header>
 
      <!-- ══ BREADCRUMB ══ -->
@@ -211,7 +225,7 @@
       <h2 class="section-title">Você também pode gostar</h2>
       <div class="related-grid">
 
-        <div class="card">
+         <div class="card">
           <div class="card-img-wrap">
             <span class="card-badge doacao">Doação</span>
             <img src="../imagens/capas-livros/capa5.png" alt="O Alienista"
@@ -221,7 +235,7 @@
             <div class="card-title">O Alienista</div>
             <div class="card-author-sm">Machado de Assis</div>
             <div class="card-stars">★★★★☆</div>
-            <button class="card-btn">Ver detalhes</button>
+            <button class="card-btn"><a href="OAlienista.html" style="color: white; text-decoration: none;">Ver detalhes</a></button>
           </div>
         </div>
 
@@ -235,7 +249,7 @@
             <div class="card-title">1984</div>
             <div class="card-author-sm">George Orwell</div>
             <div class="card-stars">★★★★★</div>
-            <button class="card-btn">Ver detalhes</button>
+            <button class="card-btn"><a href="1984.html" style="color: white; text-decoration: none;">Ver detalhes</a></button>
           </div>
         </div>
 
@@ -249,7 +263,7 @@
             <div class="card-title">O alquimista</div>
             <div class="card-author-sm">Machado de Assis</div>
             <div class="card-stars">★★★★★</div>
-            <button class="card-btn">Ver detalhes</button>
+            <button class="card-btn"><a href="oAlquimista.html" style="color: white; text-decoration: none;">ver detalhes</a></button>
           </div>
         </div>
 
@@ -258,5 +272,24 @@
 
   </main>
 
+   <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Fecha ao clicar em um link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    
+  </script>
 </body>
 </html>

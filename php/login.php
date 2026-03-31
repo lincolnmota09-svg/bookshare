@@ -14,7 +14,7 @@ if(mysqli_num_rows($resultado) > 0){
     session_start();
     $_SESSION['id'] = $user['id'];
     $_SESSION['usuario'] = $user['usuario'];
-    header("location: ../pagina_inicial/index.php");
+    header("location: ../Home/inicio.php");
     exit();
 }else{
     header("location: ../login.html");

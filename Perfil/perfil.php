@@ -1,3 +1,7 @@
+<?php
+include('../php/verificar.php');
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,6 +10,7 @@
 <title>Perfil do Leitor</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../Home/home.css">
 
 <style>
 :root {
@@ -195,6 +200,64 @@ body {
 
 <body>
 
+   <header>
+    <div class="header-left">
+      <div class="logo"><a href=""><img src="../imagens/logo/logo.png" alt=""></a></div>
+
+      <!-- Nav desktop -->
+      <nav>
+        <a href="../Home/inicio.php" >início</a>
+        <a href="../Clube/clube.php">Clube</a> 
+        <a href="../Emprestar/emprestar.php">Emprestar</a>
+        <a href="../Perfil/perfil.php" class="active">Perfil</a>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <!-- Search desktop -->
+      <div class="search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <!-- Avatar -->
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          <img src="../imagens/usuario/edilson.png" alt="User" />
+        </div>
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+
+     <div class="mobile-menu" id="mobileMenu">
+    <a href="../Home/inicio.php" >início</a>
+    <a href="../Clube/clube.php">Clube</a> 
+    <a href="../Emprestar/emprestar.php">Emprestar</a>
+    <a href="../Perfil/perfil.php" class="active">Perfil</a>
+
+
+    <div class="mobile-search">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+      </svg>
+      <input type="text" placeholder="Search..." />
+    </div>
+
+  </div>
+  </header>
+
+
 <div class="container">
 
   <div class="perfil-card">
@@ -258,5 +321,24 @@ body {
   </div>
 
 </div>
+ <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Fecha ao clicar em um link
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    
+  </script>
 </body>
 </html>
