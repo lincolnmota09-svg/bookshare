@@ -1,54 +1,841 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-     <link rel="stylesheet" href="../Home/home.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Clube do Livro</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+    :root {
+      --bg: #0f0e17;
+      --surface: #1a1825;
+      --card: #201e2e;
+      --border: #2e2b3f;
+      --accent: #a78bfa;
+      --accent2: #f472b6;
+      --accent3: #34d399;
+      --text: #e8e6f0;
+      --muted: #7c7a8a;
+      --gold: #fbbf24;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(15,14,23,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-avatar {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 600; font-size: .9rem; cursor: pointer;
+      border: 2px solid var(--border);
+    }
+    .nav-club-badge {
+      font-size: .75rem; padding: .3rem .75rem;
+      background: rgba(167,139,250,.15);
+      border: 1px solid rgba(167,139,250,.3);
+      border-radius: 20px; color: var(--accent);
+      display: none;
+    }
+    .nav-club-badge.visible { display: block; }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem 3rem;
+      background: radial-gradient(ellipse at 50% 0%, rgba(167,139,250,.12) 0%, transparent 70%);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 3.8rem);
+      font-weight: 700; margin-bottom: 1rem;
+    }
+    .hero h1 span {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 520px; margin: 0 auto 2rem; }
+
+    /* ── CLUBS GRID ── */
+    .section { padding: 2rem; max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem; margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .section-title::after {
+      content: ''; flex: 1; height: 1px; background: var(--border);
+    }
+
+    .clubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .club-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s, border-color .2s;
+      position: relative;
+    }
+    .club-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,.4);
+      border-color: var(--accent);
+    }
+    .club-card.joined { border-color: var(--accent3); }
+    .club-card.locked { opacity: .45; cursor: not-allowed; }
+    .club-card.locked:hover { transform: none; box-shadow: none; border-color: var(--border); }
+
+    .club-banner {
+      height: 110px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem;
+      position: relative;
+    }
+    .club-badge-top {
+      position: absolute; top: .6rem; right: .6rem;
+      font-size: .65rem; font-weight: 600; padding: .25rem .6rem;
+      border-radius: 20px; letter-spacing: .05em;
+    }
+    .badge-joined { background: rgba(52,211,153,.2); color: var(--accent3); border: 1px solid rgba(52,211,153,.4); }
+    .badge-locked { background: rgba(255,255,255,.08); color: var(--muted); border: 1px solid var(--border); }
+
+    .club-body { padding: 1.25rem; }
+    .club-name { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 600; margin-bottom: .35rem; }
+    .club-desc { color: var(--muted); font-size: .85rem; line-height: 1.6; margin-bottom: 1rem; }
+    .club-meta { display: flex; gap: 1rem; font-size: .8rem; color: var(--muted); }
+    .club-meta span { display: flex; align-items: center; gap: .3rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+      padding: .65rem 1.4rem; border-radius: 10px;
+      font-size: .875rem; font-weight: 500; cursor: pointer;
+      border: none; transition: all .2s;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), #7c3aed);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: .9; transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+    .btn-danger {
+      background: rgba(239,68,68,.15); color: #f87171;
+      border: 1px solid rgba(239,68,68,.3);
+    }
+    .btn-danger:hover { background: rgba(239,68,68,.25); }
+    .btn-green {
+      background: rgba(52,211,153,.15); color: var(--accent3);
+      border: 1px solid rgba(52,211,153,.3);
+    }
+    .club-card-footer {
+      padding: .75rem 1.25rem 1.25rem;
+      display: flex; gap: .5rem;
+    }
+
+    /* ── CLUB PAGE ── */
+    .club-header {
+      padding: 3rem 2rem 2rem;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; gap: 2rem; align-items: flex-start;
+      flex-wrap: wrap;
+    }
+    .club-header-icon {
+      width: 90px; height: 90px; border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; flex-shrink: 0;
+    }
+    .club-header-info { flex: 1; min-width: 200px; }
+    .club-header-info h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; margin-bottom: .4rem;
+    }
+    .club-header-info p { color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .club-stats { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .stat { text-align: center; }
+    .stat-num { font-size: 1.4rem; font-weight: 700; color: var(--accent); }
+    .stat-label { font-size: .75rem; color: var(--muted); }
+
+    .club-content {
+      max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem;
+      display: grid; grid-template-columns: 1fr 320px; gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .club-content { grid-template-columns: 1fr; }
+    }
+
+    /* book reading */
+    .book-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.5rem;
+      display: flex; gap: 1.25rem; align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
+    .book-cover {
+      width: 80px; height: 110px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.5rem; flex-shrink: 0;
+    }
+    .book-info h4 { font-family: 'Playfair Display', serif; font-size: 1.1rem; margin-bottom: .2rem; }
+    .book-info .author { color: var(--muted); font-size: .85rem; margin-bottom: .75rem; }
+    .progress-bar { background: var(--border); border-radius: 20px; height: 6px; margin-bottom: .4rem; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 20px; background: linear-gradient(90deg, var(--accent), var(--accent2)); transition: width .4s; }
+    .progress-label { font-size: .75rem; color: var(--muted); }
+
+    /* discussions */
+    .discussion-list { display: flex; flex-direction: column; gap: 1rem; }
+    .discussion-item {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem;
+    }
+    .discussion-meta { display: flex; align-items: center; gap: .6rem; margin-bottom: .5rem; }
+    .d-avatar {
+      width: 30px; height: 30px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .75rem; font-weight: 600; flex-shrink: 0;
+    }
+    .d-name { font-size: .85rem; font-weight: 500; }
+    .d-time { font-size: .75rem; color: var(--muted); margin-left: auto; }
+    .d-text { font-size: .875rem; color: var(--muted); line-height: 1.6; }
+    .d-likes { font-size: .75rem; color: var(--muted); margin-top: .5rem; cursor: pointer; }
+    .d-likes:hover { color: var(--accent2); }
+
+    /* comment input */
+    .comment-box {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1rem;
+      display: flex; gap: .75rem; align-items: flex-end;
+      margin-top: 1rem;
+    }
+    .comment-box textarea {
+      flex: 1; background: transparent; border: none; outline: none;
+      color: var(--text); font-size: .875rem; resize: none;
+      font-family: 'Inter', sans-serif; min-height: 60px; line-height: 1.5;
+    }
+    .comment-box textarea::placeholder { color: var(--muted); }
+
+    /* sidebar */
+    .sidebar-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 1.25rem; margin-bottom: 1.25rem;
+    }
+    .sidebar-card h5 { font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 1rem; }
+    .member-list { display: flex; flex-direction: column; gap: .75rem; }
+    .member-row { display: flex; align-items: center; gap: .75rem; }
+    .m-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: .8rem; font-weight: 600; flex-shrink: 0;
+    }
+    .m-info { flex: 1; min-width: 0; }
+    .m-name { font-size: .85rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .m-role { font-size: .72rem; color: var(--muted); }
+    .m-badge { font-size: .65rem; padding: .15rem .5rem; border-radius: 20px; }
+    .badge-host { background: rgba(251,191,36,.15); color: var(--gold); border: 1px solid rgba(251,191,36,.3); }
+    .badge-you { background: rgba(167,139,250,.15); color: var(--accent); border: 1px solid rgba(167,139,250,.3); }
+
+    .schedule-list { display: flex; flex-direction: column; gap: .75rem; }
+    .schedule-item { display: flex; gap: .75rem; align-items: flex-start; }
+    .schedule-dot { width: 10px; height: 10px; border-radius: 50%; margin-top: 4px; flex-shrink: 0; }
+    .schedule-title { font-size: .85rem; }
+    .schedule-date { font-size: .75rem; color: var(--muted); }
+
+    /* modal */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 200;
+      background: rgba(0,0,0,.7); backdrop-filter: blur(4px);
+      display: none; align-items: center; justify-content: center; padding: 1rem;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 2rem; max-width: 420px; width: 100%;
+      animation: slideUp .25s ease;
+    }
+    @keyframes slideUp { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    .modal h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: .5rem; }
+    .modal p { color: var(--muted); font-size: .9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+    .modal-actions { display: flex; gap: .75rem; justify-content: flex-end; }
+
+    /* toast */
+    .toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+      background: var(--card); border: 1px solid var(--accent3);
+      border-radius: 12px; padding: .85rem 1.25rem;
+      display: flex; align-items: center; gap: .75rem;
+      font-size: .875rem; transform: translateY(80px); opacity: 0;
+      transition: all .3s ease; pointer-events: none;
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    .toast-icon { font-size: 1.1rem; }
+
+    /* back btn */
+    .back-btn {
+      display: inline-flex; align-items: center; gap: .4rem;
+      color: var(--muted); font-size: .875rem; cursor: pointer;
+      padding: .5rem 0; margin-bottom: 1rem;
+      background: none; border: none; transition: color .2s;
+    }
+    .back-btn:hover { color: var(--text); }
+
+    /* empty state */
+    .empty { text-align: center; padding: 4rem 2rem; color: var(--muted); }
+    .empty-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .empty h3 { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--text); margin-bottom: .5rem; }
+
+    /* tags */
+    .tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+    .tag {
+      font-size: .7rem; padding: .2rem .65rem; border-radius: 20px;
+      background: rgba(167,139,250,.1); color: var(--accent);
+      border: 1px solid rgba(167,139,250,.2);
+    }
+  </style>
 </head>
 <body>
-      <header>
-    <div class="header-left">
-      <div class="logo"><a href=""><img src="../imagens/logo/logo.png" alt=""></a></div>
 
-      <!-- Nav desktop -->
-  <nav>
-        <a href="../Home/inicio.html" class="active">início</a>
-        <a href="../Disponiveis/disponiveis.html">Disponíveis</a>
-        <a href="../Clube/clube.html">Clube</a> 
-        <a href="../Emprestar/emprestar.html">Emprestar</a>
-        <a href="../Doar/doar.html">Doar</a>
-        <a href="../Perfil/perfil.html">Perfil</a>
-      </nav>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo"></div>
+  <div class="nav-right">
+    <div class="nav-club-badge" id="navBadge"></div>
+    
+  </div>
+</nav>
+
+<!-- PAGE: HOME -->
+<div class="page active" id="pageHome">
+  <div class="hero">
+    <h1>Encontre seu <span>Clube do Livro</span></h1>
+    <p>Cada clube tem uma identidade única. Escolha um perfil que combine com você — e lembre-se, você só pode pertencer a um clube por vez.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Clubes Disponíveis</div>
+    <div class="clubs-grid" id="clubsGrid"></div>
+  </div>
+</div>
+
+<!-- PAGE: CLUB DETAIL -->
+<div class="page" id="pageClub">
+  <div class="section" style="padding-bottom:0">
+    <button class="back-btn" onclick="goHome()">← Voltar aos clubes</button>
+  </div>
+  <div class="club-header" id="clubHeader"></div>
+  <div class="club-content">
+    <div id="clubMain"></div>
+    <div id="clubSidebar"></div>
+  </div>
+</div>
+
+<!-- MODAL: Confirm Join -->
+<div class="modal-overlay" id="modalJoin">
+  <div class="modal">
+    <h3 id="modalTitle">Entrar no clube?</h3>
+    <p id="modalDesc"></p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-primary" onclick="confirmJoin()">✨ Entrar agora</button>
     </div>
+  </div>
+</div>
 
-    <div class="header-right">
-      <!-- Search desktop -->
-      <div class="search-box">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
-        </svg>
-        <input type="text" placeholder="Search..." />
+<!-- MODAL: Leave Warning -->
+<div class="modal-overlay" id="modalLeave">
+  <div class="modal">
+    <h3>Sair do clube?</h3>
+    <p id="modalLeaveDesc">Você perderá o acesso às discussões e ao progresso de leitura deste clube. Deseja continuar?</p>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+      <button class="btn btn-danger" onclick="confirmLeave()">Sair do clube</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon">✅</span>
+  <span id="toastMsg">Ação realizada!</span>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const CLUBS = [
+  {
+    id: 'mystery',
+    emoji: '🔍',
+    name: 'Detectives & Mistérios',
+    tagline: 'Para quem ama reviravoltas e suspense',
+    desc: 'Um clube dedicado a mentes investigativas. Lemos thrillers, policiais e clássicos do mistério — sempre tentando desvendar o caso antes do fim.',
+    gradient: 'linear-gradient(135deg, #1e1b4b, #312e81)',
+    accentColor: '#818cf8',
+    members: 142,
+    books: 38,
+    currentBook: { title: 'O Nome da Rosa', author: 'Umberto Eco', emoji: '🌹', progress: 62 },
+    tags: ['Thriller', 'Policial', 'Suspense', 'Clássicos'],
+    schedule: [
+      { title: 'Discussão cap. 1–10', date: '5 abr, 20h', color: '#818cf8' },
+      { title: 'Sessão de Teorias', date: '12 abr, 20h', color: '#a78bfa' },
+      { title: 'Encontro Mensal', date: '26 abr, 18h', color: '#c4b5fd' },
+    ],
+    host: 'Carla M.',
+    hostEmoji: '👩‍💼',
+    discussions: [
+      { user: 'Rafael', avatar: '#6366f1', text: 'A estrutura medieval do livro é incrível. Eco consegue criar uma atmosfera densa sem perder o ritmo do mistério.', time: '2h atrás', likes: 12 },
+      { user: 'Priya', avatar: '#8b5cf6', text: 'Ainda estou no capítulo 4 mas já tenho meu suspeito 😅', time: '5h atrás', likes: 8 },
+      { user: 'Lucas', avatar: '#7c3aed', text: 'Alguém achou as referências à Aristóteles muito densas? Achei que atrasou o ritmo um pouco.', time: '1d atrás', likes: 5 },
+    ],
+    otherMembers: [
+      { name: 'Rafael', avatar: '#6366f1', role: 'Membro ativo' },
+      { name: 'Priya', avatar: '#8b5cf6', role: 'Nova leitora' },
+      { name: 'Lucas', avatar: '#7c3aed', role: 'Membro ativo' },
+      { name: 'Ana', avatar: '#4f46e5', role: 'Moderadora' },
+    ]
+  },
+  {
+    id: 'scifi',
+    emoji: '🚀',
+    name: 'Futuros Possíveis',
+    tagline: 'Ficção científica e mundos além da imaginação',
+    desc: 'Do cyberpunk ao space opera, exploramos ficção científica em todas as suas formas. Se você sonha com o futuro, este é o seu lugar.',
+    gradient: 'linear-gradient(135deg, #0c1a2e, #0f3460)',
+    accentColor: '#38bdf8',
+    members: 218,
+    books: 51,
+    currentBook: { title: 'Duna', author: 'Frank Herbert', emoji: '🏜️', progress: 35 },
+    tags: ['Sci-Fi', 'Cyberpunk', 'Space Opera', 'Distopia'],
+    schedule: [
+      { title: 'Maratona de Duna', date: '8 abr, 19h', color: '#38bdf8' },
+      { title: 'Debate: Ecologia em Duna', date: '15 abr, 20h', color: '#0ea5e9' },
+      { title: 'Escolha do próximo livro', date: '29 abr, 19h', color: '#7dd3fc' },
+    ],
+    host: 'Thiago K.',
+    hostEmoji: '👨‍🚀',
+    discussions: [
+      { user: 'Beatriz', avatar: '#0369a1', text: 'A política das casas em Duna é literalmente um estudo de geopolítica. Herbert era visionário.', time: '1h atrás', likes: 24 },
+      { user: 'Felipe', avatar: '#0284c7', text: 'Recomendo fortemente assistir o filme depois de ler o livro. A adaptação de Villeneuve é magnífica.', time: '3h atrás', likes: 19 },
+      { user: 'Marta', avatar: '#075985', text: 'Quem mais ficou obcecado com o sistema de éclusas de água? Imaginei cada detalhe.', time: '8h atrás', likes: 11 },
+    ],
+    otherMembers: [
+      { name: 'Beatriz', avatar: '#0369a1', role: 'Membro ativa' },
+      { name: 'Felipe', avatar: '#0284c7', role: 'Membro ativo' },
+      { name: 'Marta', avatar: '#075985', role: 'Leitora veloz' },
+      { name: 'Igor', avatar: '#0c4a6e', role: 'Moderador' },
+    ]
+  },
+  {
+    id: 'philosophy',
+    emoji: '🦉',
+    name: 'Mentes Filosóficas',
+    tagline: 'Questionar é o começo de tudo',
+    desc: 'De Platão a Simone de Beauvoir, mergulhamos em obras que desafiam nossa forma de ver o mundo. Para quem gosta de pensar devagar e fundo.',
+    gradient: 'linear-gradient(135deg, #1c1207, #3b2a0a)',
+    accentColor: '#fbbf24',
+    members: 89,
+    books: 27,
+    currentBook: { title: 'A República', author: 'Platão', emoji: '🏛️', progress: 48 },
+    tags: ['Filosofia', 'Ética', 'Existencialismo', 'Clássicos'],
+    schedule: [
+      { title: 'Debate: O Mito da Caverna', date: '6 abr, 19h', color: '#fbbf24' },
+      { title: 'Leitura comentada', date: '13 abr, 20h', color: '#f59e0b' },
+      { title: 'Círculo socrático', date: '27 abr, 18h', color: '#d97706' },
+    ],
+    host: 'Prof. Silvana',
+    hostEmoji: '👩‍🏫',
+    discussions: [
+      { user: 'Davi', avatar: '#92400e', text: 'O conceito de justiça em Platão ainda é surpreendentemente atual. Basta ler as notícias.', time: '30min atrás', likes: 16 },
+      { user: 'Camila', avatar: '#b45309', text: 'A alegoria da caverna me fez repensar completamente como consumo informação. Recomendo reler devagar.', time: '4h atrás', likes: 22 },
+      { user: 'André', avatar: '#78350f', text: 'Alguém tem leituras complementares para contextualizar? Estou achando alguns diálogos difíceis.', time: '1d atrás', likes: 7 },
+    ],
+    otherMembers: [
+      { name: 'Davi', avatar: '#92400e', role: 'Membro ativo' },
+      { name: 'Camila', avatar: '#b45309', role: 'Membro ativa' },
+      { name: 'André', avatar: '#78350f', role: 'Iniciante' },
+      { name: 'Lena', avatar: '#451a03', role: 'Moderadora' },
+    ]
+  },
+  {
+    id: 'romance',
+    emoji: '🌷',
+    name: 'Histórias do Coração',
+    tagline: 'Romances que ficam para sempre na memória',
+    desc: 'Aqui celebramos histórias de amor em todas as formas: épicos, contemporâneos, dramáticos ou divertidos. Venha com o coração aberto.',
+    gradient: 'linear-gradient(135deg, #2d0a1e, #5b1a3a)',
+    accentColor: '#f472b6',
+    members: 305,
+    books: 64,
+    currentBook: { title: 'Orgulho e Preconceito', author: 'Jane Austen', emoji: '💌', progress: 71 },
+    tags: ['Romance', 'Contemporâneo', 'Clássico', 'Drama'],
+    schedule: [
+      { title: 'Chat ao vivo: Cap. final', date: '4 abr, 21h', color: '#f472b6' },
+      { title: 'Votação do próximo livro', date: '11 abr, 19h', color: '#ec4899' },
+      { title: 'Encontro presencial (SP)', date: '25 abr, 17h', color: '#db2777' },
+    ],
+    host: 'Mariana L.',
+    hostEmoji: '👩‍❤️‍📖',
+    discussions: [
+      { user: 'Júlia', avatar: '#9d174d', text: 'Darcy é sem dúvida o personagem mais complexo de Austen. Reli 3 vezes e sempre encontro algo novo.', time: '20min atrás', likes: 31 },
+      { user: 'Tati', avatar: '#be185d', text: 'A crítica social que Austen faz é tão inteligente... ela esconde nas entrelinhas do romance.', time: '2h atrás', likes: 27 },
+      { user: 'Nico', avatar: '#831843', text: 'Único homem no clube e posso dizer: amo esse livro! Muito bem escrito.', time: '6h atrás', likes: 45 },
+    ],
+    otherMembers: [
+      { name: 'Júlia', avatar: '#9d174d', role: 'Membro ativa' },
+      { name: 'Tati', avatar: '#be185d', role: 'Co-anfitriã' },
+      { name: 'Nico', avatar: '#831843', role: 'Membro ativo' },
+      { name: 'Sol', avatar: '#500724', role: 'Moderadora' },
+    ]
+  },
+  {
+    id: 'horror',
+    emoji: '🕯️',
+    name: 'Leituras Sombrias',
+    tagline: 'Para quem lê com a luz acesa... ou não',
+    desc: 'Terror, horror gótico e suspense psicológico. Um clube para quem aprecia a escuridão nas páginas — mas ri muito entre um arrepio e outro.',
+    gradient: 'linear-gradient(135deg, #0d0d0d, #1a0a0a)',
+    accentColor: '#f87171',
+    members: 176,
+    books: 43,
+    currentBook: { title: 'It — A Coisa', author: 'Stephen King', emoji: '🤡', progress: 29 },
+    tags: ['Terror', 'Gótico', 'Psicológico', 'Stephen King'],
+    schedule: [
+      { title: 'Maratona de leitura', date: '7 abr, 22h', color: '#f87171' },
+      { title: 'Debate: o medo de King', date: '14 abr, 21h', color: '#ef4444' },
+      { title: 'Especial: Contos de Horror', date: '28 abr, 20h', color: '#dc2626' },
+    ],
+    host: 'Rodrigo N.',
+    hostEmoji: '🧛',
+    discussions: [
+      { user: 'Laís', avatar: '#991b1b', text: 'A parte da infância é genuinamente aterrorizante. King sabe criar personagens que você realmente se importa.', time: '45min atrás', likes: 18 },
+      { user: 'Pedro', avatar: '#7f1d1d', text: 'Está sendo meu primeiro King e estou impressionado com o volume. Mas não consigo parar de ler!', time: '3h atrás', likes: 14 },
+      { user: 'Val', avatar: '#450a0a', text: 'O Palhaço Pennywise é perturbador de formas que vão além do visual. A psicologia do personagem é brilhante.', time: '1d atrás', likes: 9 },
+    ],
+    otherMembers: [
+      { name: 'Laís', avatar: '#991b1b', role: 'Membro ativa' },
+      { name: 'Pedro', avatar: '#7f1d1d', role: 'Iniciante' },
+      { name: 'Val', avatar: '#450a0a', role: 'Membro ativa' },
+      { name: 'Guto', avatar: '#300a0a', role: 'Moderador' },
+    ]
+  },
+  {
+    id: 'selfhelp',
+    emoji: '🌱',
+    name: 'Crescimento & Propósito',
+    tagline: 'Livros que transformam perspectivas',
+    desc: 'Autoconhecimento, produtividade, estoicismo e desenvolvimento pessoal. Um espaço seguro para crescer junto e aplicar o que se lê na vida real.',
+    gradient: 'linear-gradient(135deg, #052e16, #14532d)',
+    accentColor: '#4ade80',
+    members: 263,
+    books: 55,
+    currentBook: { title: 'Estoicismo Prático', author: 'Ryan Holiday', emoji: '🏛️', progress: 55 },
+    tags: ['Autoajuda', 'Estoicismo', 'Mindfulness', 'Produtividade'],
+    schedule: [
+      { title: 'Check-in semanal', date: '3 abr, 19h', color: '#4ade80' },
+      { title: 'Workshop: Journaling', date: '10 abr, 20h', color: '#22c55e' },
+      { title: 'Partilha de insights', date: '24 abr, 19h', color: '#16a34a' },
+    ],
+    host: 'Fernanda V.',
+    hostEmoji: '🧘‍♀️',
+    discussions: [
+      { user: 'Bruno', avatar: '#166534', text: 'Implementei a prática do journaling estoico há 3 semanas. Mudança real na minha ansiedade.', time: '1h atrás', likes: 33 },
+      { user: 'Isadora', avatar: '#15803d', text: 'Holiday tem a capacidade de tornar Sêneca acessível sem perder a profundidade. Impressionante.', time: '4h atrás', likes: 21 },
+      { user: 'Caio', avatar: '#065f46', text: 'Qual a diferença prática entre Estoicismo e Mindfulness moderno? Debatemos isso na próxima sessão?', time: '12h atrás', likes: 17 },
+    ],
+    otherMembers: [
+      { name: 'Bruno', avatar: '#166534', role: 'Membro ativo' },
+      { name: 'Isadora', avatar: '#15803d', role: 'Membro ativa' },
+      { name: 'Caio', avatar: '#065f46', role: 'Colaborador' },
+      { name: 'Rê', avatar: '#022c22', role: 'Moderadora' },
+    ]
+  },
+];
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let state = {
+  joinedClubId: localStorage.getItem('lcJoined') || null,
+  pendingJoinId: null,
+  currentClubId: null,
+};
+
+function save() { localStorage.setItem('lcJoined', state.joinedClubId || ''); }
+
+// ── RENDER HOME ───────────────────────────────────────────────────────────────
+function renderHome() {
+  const grid = document.getElementById('clubsGrid');
+  grid.innerHTML = '';
+  const joined = CLUBS.find(c => c.id === state.joinedClubId);
+
+  // update nav
+  const badge = document.getElementById('navBadge');
+  if (joined) {
+    badge.textContent = `${joined.emoji} ${joined.name}`;
+    badge.classList.add('visible');
+  } else {
+    badge.classList.remove('visible');
+  }
+
+  CLUBS.forEach(club => {
+    const isJoined = club.id === state.joinedClubId;
+    const isLocked = state.joinedClubId && !isJoined;
+    const card = document.createElement('div');
+    card.className = `club-card${isJoined ? ' joined' : ''}${isLocked ? ' locked' : ''}`;
+
+    card.innerHTML = `
+      <div class="club-banner" style="background:${club.gradient}">
+        ${club.emoji}
+        ${isJoined ? '<span class="club-badge-top badge-joined">✓ Seu clube</span>' : ''}
+        ${isLocked ? '<span class="club-badge-top badge-locked">🔒 Lotado</span>' : ''}
       </div>
-
-      <!-- Avatar -->
-      <div class="avatar-wrapper">
-        <div class="avatar">
-          <img src="../imagens/usuario/edilson.png" alt="User" />
+      <div class="club-body">
+        <div class="club-name">${club.name}</div>
+        <div class="club-desc">${club.tagline}</div>
+        <div class="club-meta">
+          <span>👥 ${club.members} membros</span>
+          <span>📖 ${club.books} livros lidos</span>
         </div>
-        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
-        </svg>
+        <div class="tags">${club.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+      <div class="club-card-footer">
+        ${isJoined
+          ? `<button class="btn btn-green" onclick="openClub('${club.id}')">📖 Acessar clube</button>
+             <button class="btn btn-danger" onclick="askLeave('${club.id}')">Sair</button>`
+          : isLocked
+          ? `<button class="btn btn-outline" style="cursor:not-allowed;opacity:.5" disabled>🔒 Saia do seu clube primeiro</button>`
+          : `<button class="btn btn-outline" onclick="askJoin('${club.id}')">Ver clube</button>
+             <button class="btn btn-primary" onclick="askJoin('${club.id}')">✨ Entrar</button>`
+        }
+      </div>`;
+
+    grid.appendChild(card);
+  });
+}
+
+// ── CLUB DETAIL ───────────────────────────────────────────────────────────────
+function openClub(id) {
+  const club = CLUBS.find(c => c.id === id);
+  state.currentClubId = id;
+  showPage('pageClub');
+
+  // header
+  document.getElementById('clubHeader').innerHTML = `
+    <div class="club-header-icon" style="background:${club.gradient}">${club.emoji}</div>
+    <div class="club-header-info">
+      <h2>${club.name}</h2>
+      <p>${club.desc}</p>
+      <div class="tags">${club.tags.map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+      <div class="club-stats" style="margin-top:1.25rem">
+        <div class="stat"><div class="stat-num" style="color:${club.accentColor}">${club.members}</div><div class="stat-label">Membros</div></div>
+        <div class="stat"><div class="stat-num" style="color:${club.accentColor}">${club.books}</div><div class="stat-label">Livros lidos</div></div>
+        <div class="stat"><div class="stat-num" style="color:${club.accentColor}">${club.discussions.length}</div><div class="stat-label">Discussões</div></div>
+      </div>
+    </div>
+    <div style="display:flex;gap:.75rem;align-items:flex-start;flex-wrap:wrap">
+      ${state.joinedClubId === id
+        ? `<button class="btn btn-danger" onclick="askLeave('${id}')">Sair do clube</button>`
+        : state.joinedClubId
+        ? `<button class="btn btn-outline" style="opacity:.5;cursor:not-allowed" disabled>🔒 Saia do seu clube atual</button>`
+        : `<button class="btn btn-primary" onclick="askJoin('${id}')">✨ Entrar neste clube</button>`}
+    </div>`;
+
+  // main
+  document.getElementById('clubMain').innerHTML = `
+    <div>
+      <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1rem;color:var(--muted);text-transform:uppercase;font-size:.8rem;letter-spacing:.1em">📖 Leitura Atual</h4>
+      <div class="book-card">
+        <div class="book-cover" style="background:${club.gradient}">${club.currentBook.emoji}</div>
+        <div class="book-info">
+          <h4>${club.currentBook.title}</h4>
+          <div class="author">${club.currentBook.author}</div>
+          <div class="progress-bar"><div class="progress-fill" style="width:${club.currentBook.progress}%"></div></div>
+          <div class="progress-label">Progresso do clube: ${club.currentBook.progress}%</div>
+        </div>
       </div>
 
-      <!-- Hamburger (mobile) -->
-      <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <h4 style="font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:1rem;color:var(--muted);text-transform:uppercase;font-size:.8rem;letter-spacing:.1em;margin-top:2rem">💬 Discussões</h4>
+      <div class="discussion-list">
+        ${club.discussions.map(d=>`
+          <div class="discussion-item">
+            <div class="discussion-meta">
+              <div class="d-avatar" style="background:${d.avatar}">${d.user[0]}</div>
+              <span class="d-name">${d.user}</span>
+              <span class="d-time">${d.time}</span>
+            </div>
+            <div class="d-text">${d.text}</div>
+            <div class="d-likes" onclick="this.innerHTML='❤️ ' + (parseInt(this.innerHTML.split(' ')[1])+1) + ' curtidas'">🤍 ${d.likes} curtidas</div>
+          </div>`).join('')}
+      </div>
+
+      ${state.joinedClubId === id ? `
+      <div class="comment-box" style="margin-top:1.5rem">
+        <textarea id="commentInput" placeholder="Compartilhe seu pensamento sobre o livro..."></textarea>
+        <button class="btn btn-primary" onclick="postComment('${id}')">Enviar</button>
+      </div>` : `
+      <div style="margin-top:1rem;padding:1rem;background:rgba(167,139,250,.05);border:1px dashed var(--border);border-radius:12px;text-align:center;color:var(--muted);font-size:.875rem">
+        Participe do clube para comentar nas discussões
+      </div>`}
+    </div>`;
+
+  // sidebar
+  document.getElementById('clubSidebar').innerHTML = `
+    <div class="sidebar-card">
+      <h5>👑 Anfitrião</h5>
+      <div class="member-row">
+        <div class="m-avatar" style="background:${club.gradient};font-size:1.2rem">${club.hostEmoji}</div>
+        <div class="m-info"><div class="m-name">${club.host}</div><div class="m-role">Fundador do clube</div></div>
+        <span class="m-badge badge-host">Host</span>
+      </div>
     </div>
-  </header>
-    <h1>Clube</h1>
+
+    <div class="sidebar-card">
+      <h5>👥 Membros</h5>
+      <div class="member-list">
+        ${state.joinedClubId === id ? `
+        <div class="member-row">
+          <div class="m-avatar" style="background:linear-gradient(135deg,var(--accent),var(--accent2))">U</div>
+          <div class="m-info"><div class="m-name">Você</div><div class="m-role">Membro</div></div>
+          <span class="m-badge badge-you">Você</span>
+        </div>` : ''}
+        ${club.otherMembers.map(m=>`
+        <div class="member-row">
+          <div class="m-avatar" style="background:${m.avatar}">${m.name[0]}</div>
+          <div class="m-info"><div class="m-name">${m.name}</div><div class="m-role">${m.role}</div></div>
+        </div>`).join('')}
+        <div style="font-size:.8rem;color:var(--muted);margin-top:.5rem">+ ${club.members - club.otherMembers.length - (state.joinedClubId===id?1:0)} outros membros</div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <h5>📅 Próximos Eventos</h5>
+      <div class="schedule-list">
+        ${club.schedule.map(s=>`
+        <div class="schedule-item">
+          <div class="schedule-dot" style="background:${s.color}"></div>
+          <div><div class="schedule-title">${s.title}</div><div class="schedule-date">${s.date}</div></div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+}
+
+function postComment(clubId) {
+  const input = document.getElementById('commentInput');
+  if (!input.value.trim()) return;
+  const club = CLUBS.find(c => c.id === clubId);
+  club.discussions.unshift({
+    user: 'Você', avatar: 'linear-gradient(135deg,var(--accent),var(--accent2))',
+    text: input.value.trim(), time: 'agora', likes: 0
+  });
+  input.value = '';
+  openClub(clubId);
+  showToast('💬 Comentário publicado!');
+}
+
+// ── JOIN / LEAVE ──────────────────────────────────────────────────────────────
+function askJoin(id) {
+  const club = CLUBS.find(c => c.id === id);
+  if (state.joinedClubId && state.joinedClubId !== id) {
+    showToast('❌ Saia do seu clube atual primeiro!', '#f87171');
+    return;
+  }
+  if (state.joinedClubId === id) { openClub(id); return; }
+  state.pendingJoinId = id;
+  document.getElementById('modalTitle').textContent = `Entrar em "${club.name}"?`;
+  document.getElementById('modalDesc').textContent = `Você está prestes a entrar no clube ${club.emoji} ${club.name}. Lembre-se: você só pode participar de um clube por vez. Poderá sair a qualquer momento.`;
+  document.getElementById('modalJoin').classList.add('open');
+}
+
+function confirmJoin() {
+  const club = CLUBS.find(c => c.id === state.pendingJoinId);
+  state.joinedClubId = state.pendingJoinId;
+  club.members++;
+  save();
+  closeModal();
+  renderHome();
+  showToast(`${club.emoji} Bem-vindo ao ${club.name}!`);
+  setTimeout(() => openClub(state.pendingJoinId), 600);
+}
+
+function askLeave(id) {
+  state.pendingJoinId = id;
+  const club = CLUBS.find(c => c.id === id);
+  document.getElementById('modalLeaveDesc').textContent = `Você vai sair de "${club.name}". Seu histórico de leitura neste clube será perdido. Deseja continuar?`;
+  document.getElementById('modalLeave').classList.add('open');
+}
+
+function confirmLeave() {
+  const club = CLUBS.find(c => c.id === state.pendingJoinId);
+  club.members = Math.max(0, club.members - 1);
+  state.joinedClubId = null;
+  save();
+  closeModal();
+  showPage('pageHome');
+  renderHome();
+  showToast('👋 Você saiu do clube.');
+}
+
+function closeModal() {
+  document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+}
+
+// ── UTILS ─────────────────────────────────────────────────────────────────────
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function goHome() { showPage('pageHome'); renderHome(); }
+
+let toastTimer;
+function showToast(msg, color) {
+  const t = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  t.style.borderColor = color || 'var(--accent3)';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(o => {
+  o.addEventListener('click', e => { if (e.target === o) closeModal(); });
+});
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderHome();
+</script>
 </body>
 </html>
