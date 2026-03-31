@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="home.css">
+  <link rel="stylesheet" href="menu.css">
   <title>Início</title>
 </head>
 <body>
@@ -69,6 +70,138 @@
     </div>
   </div>
 
+  <section class="hero">
+    <h1>Compartilhe sua <span>leitura</span></h1>
+    <p>Empreste, doe ou descubra livros perto de você. Conecte-se com outros leitores.</p>
+    <div class="hero-btns">
+      <a href="../Disponiveis/disponiveis.html" class="btn-primary">Explorar livros</a>
+      <a href="../Emprestar/emprestar.html" class="btn-outline">Emprestar um livro</a>
+    </div>
+  </section>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- Adicionados Recentemente -->
+    <div class="section-header">
+      <div>
+        <h2>Adicionados Recentemente</h2>
+        <p>Os livros mais novos disponíveis na plataforma</p>
+      </div>
+      <a href="#" class="ver-todos">Ver todos →</a>
+    </div>
+
+    <div class="books-grid">
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <span class="badge emprestar">Emprestar</span>
+          <img src="../imagens/capas-livros/capa4.png" alt="O Alquimista"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="img-placeholder" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            Sem capa
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">O Alquimista</div>
+          <div class="card-author">Paulo Coelho</div>
+          <div class="stars">★★★★★</div>
+          <button class="card-btn">Ver detalhes</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <span class="badge doacao">Doação</span>
+          <img src="../imagens/capas-livros/capa5.png" alt="Diário: Os relatos adolescentes"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="img-placeholder" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            Sem capa
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">O Alienista</div>
+          <div class="card-author">Machado de Assis</div>
+          <div class="stars">★★★★☆</div>
+          <button class="card-btn">Ver detalhes</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <span class="badge disponivel">Disponível</span>
+          <img src="../imagens/capas-livros/capa6.png" alt="1984"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="img-placeholder" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            Sem capa
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">1984</div>
+          <div class="card-author">George Orwell</div>
+          <div class="stars">★★★★★</div>
+          <button class="card-btn">Ver detalhes</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mais Emprestados -->
+    <div class="section-header section-gap">
+      <div>
+        <h2>Mais Emprestados</h2>
+        <p>Os favoritos da comunidade BookShare</p>
+      </div>
+      <a href="#" class="ver-todos">Ver todos →</a>
+    </div>
+
+    <div class="books-grid">
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <span class="badge disponivel">Disponível</span>
+          <img src="../imagens/capas-livros/capa6.png" alt="1984"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="img-placeholder" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            Sem capa
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">1984</div>
+          <div class="card-author">George Orwell</div>
+          <div class="stars">★★★★★</div>
+          <button class="card-btn">Ver detalhes</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-img-wrap">
+          <span class="badge emprestar">Emprestar</span>
+          <img src="../imagens/capas-livros/capa4.png" alt="O Alquimista"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="img-placeholder" style="display:none">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg>
+            Sem capa
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-title">O Alquimista</div>
+          <div class="card-author">Paulo Coelho</div>
+          <div class="stars">★★★★★</div>
+          <button class="card-btn">Ver detalhes</button>
+        </div>
+      </div>
+
+      
+      
+
+    </div>
+  </main>
+
   <script>
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -86,8 +219,10 @@
       });
     });
 
-    //Men
+    
   </script>
+
+  
 
 </body>
 </html>
