@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O alquimista</title>
+    <link rel="stylesheet" href="../Home/home.css">
+    <link rel="stylesheet" href="livros.css">
+</head>
+<body>
+    <header>
+    <div class="header-left">
+      <div class="logo"><a href=""><img src="../imagens/logo/logo.png" alt=""></a></div>
+
+      <!-- Nav desktop -->
+  <nav>
+        <a href="../Home/inicio.html" class="active">início</a>
+        <a href="../Disponiveis/disponiveis.html">Disponíveis</a>
+        <a href="../Clube/clube.html">Clube</a> 
+        <a href="../Emprestar/emprestar.html">Emprestar</a>
+        <a href="../Doar/doar.html">Doar</a>
+        <a href="../Perfil/perfil.html">Perfil</a>
+      </nav>
+    </div>
+
+    <div class="header-right">
+      <!-- Search desktop -->
+      <div class="search-box">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <input type="text" placeholder="Search..." />
+      </div>
+
+      <!-- Avatar -->
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          <img src="../imagens/usuario/edilson.png" alt="User" />
+        </div>
+        <svg class="chevron" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+
+      <!-- Hamburger (mobile) -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+     <!-- ══ BREADCRUMB ══ -->
+  <div class="back-bar">
+    <a href="#" class="back-link" onclick="history.back(); return false;">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
+      </svg>
+      Voltar para Disponíveis
+    </a>
+  </div>
+
+  <!-- ══ HERO DO LIVRO ══ -->
+  <div class="book-hero">
+    <div class="book-hero-inner">
+
+      <!-- Capa + ações -->
+      <div class="cover-col">
+        <div class="cover-wrap">
+          <span class="cover-badge emprestar">Emprestar</span>
+          <img src="../imagens/capas-livros/capa4.png" alt="O Alquimista"
+               onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22 fill=%22%23252538%22%3E%3Crect width=%22200%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344446a%22 font-size=%2214%22%3ESem capa%3C/text%3E%3C/svg%3E'" />
+        </div>
+        <div class="cover-actions">
+          <a href="#" class="btn-primary">Solicitar empréstimo</a>
+          <a href="#" class="btn-outline">Adicionar à lista</a>
+          <button class="btn-wishlist">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+            </svg>
+            Salvar nos favoritos
+          </button>
+        </div>
+      </div>
+
+      <!-- Informações principais -->
+      <div class="info-col">
+        <div class="book-genre">Romance · Ficção</div>
+        <h1 class="book-title">O Alquimista</h1>
+        <div class="book-author">por <span>Paulo Coelho</span></div>
+
+        <div class="rating-row">
+          <div class="stars">★★★★★</div>
+          <div class="rating-num">4.9</div>
+          <div class="rating-count">(247 avaliações)</div>
+        </div>
+
+        <div class="book-tags">
+          <span class="tag">Aventura</span>
+          <span class="tag">Filosofia</span>
+          <span class="tag">Autoconhecimento</span>
+          <span class="tag">Clássico</span>
+          <span class="tag">Internacional</span>
+        </div>
+
+        <p class="book-synopsis">
+          A história de Santiago, um jovem pastor andaluz que decide viajar pelo mundo em busca de um tesouro escondido perto das Pirâmides do Egito. Ao longo da jornada, ele aprende a ouvir seu coração e a seguir os sinais do universo. Um romance universal sobre coragem, sonhos e transformação pessoal.
+        </p>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Editora</span>
+            <span class="meta-value">HarperCollins</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Ano</span>
+            <span class="meta-value">1988</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Páginas</span>
+            <span class="meta-value">208 pág.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Idioma</span>
+            <span class="meta-value">Português</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">ISBN</span>
+            <span class="meta-value">978-85-325-1</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Condição</span>
+            <span class="meta-value">Muito bom</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- Disponibilidade -->
+    <section>
+      <h2 class="section-title">Disponibilidade</h2>
+      <div class="avail-box">
+        <div class="avail-indicator"></div>
+        <div class="avail-text">
+          <strong>Disponível agora para empréstimo</strong>
+          <span>Prazo máximo de devolução: 21 dias</span>
+        </div>
+        <div class="avail-location">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          São Paulo, SP · ~3,2 km de você
+        </div>
+      </div>
+    </section>
+
+    <!-- Quem está disponibilizando -->
+    <section>
+      <h2 class="section-title">Disponibilizado por</h2>
+      <div class="provider-card">
+        <div class="provider-avatar">
+          <img src="../imagens/usuario/edilson.png" alt="Edilson"
+               onerror="this.style.background='#2a2a3e'" />
+        </div>
+        <div class="provider-info">
+          <div class="provider-name">Edilson Carvalho</div>
+          <div class="provider-since">Membro desde março de 2023</div>
+          <div class="provider-stats">
+            <div class="pstat">
+              <span class="pstat-num">34</span>
+              <span class="pstat-label">Empréstimos</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-num">12</span>
+              <span class="pstat-label">Doações</span>
+            </div>
+            <div class="pstat">
+              <span class="pstat-num">4.8</span>
+              <span class="pstat-label">Avaliação</span>
+            </div>
+          </div>
+          <div class="provider-badge-row">
+            <span class="pbadge verified">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M8.603 3.799A4.49 4.49 0 0112 2.25c1.357 0 2.573.6 3.397 1.549a4.49 4.49 0 013.498 1.307 4.491 4.491 0 011.307 3.497A4.49 4.49 0 0121.75 12a4.49 4.49 0 01-1.549 3.397 4.491 4.491 0 01-1.307 3.497 4.491 4.491 0 01-3.497 1.307A4.49 4.49 0 0112 21.75a4.49 4.49 0 01-3.397-1.549 4.49 4.49 0 01-3.498-1.306 4.491 4.491 0 01-1.307-3.498A4.49 4.49 0 012.25 12c0-1.357.6-2.573 1.549-3.397a4.49 4.49 0 011.307-3.497 4.49 4.49 0 013.497-1.307zm7.007 6.387a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+              </svg>
+              Usuário verificado
+            </span>
+            <span class="pbadge star">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clip-rule="evenodd" />
+              </svg>
+              Top Leitor
+            </span>
+            <span class="pbadge">📚 +50 livros compartilhados</span>
+          </div>
+        </div>
+        <button class="btn-contact">Entrar em contato</button>
+      </div>
+    </section>
+
+    <!-- Livros relacionados -->
+    <section>
+      <h2 class="section-title">Você também pode gostar</h2>
+      <div class="related-grid">
+
+        <div class="card">
+          <div class="card-img-wrap">
+            <span class="card-badge doacao">Doação</span>
+            <img src="../imagens/capas-livros/capa5.png" alt="O Alienista"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22 fill=%22%23252538%22%3E%3Crect width=%22200%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344446a%22 font-size=%2214%22%3ESem capa%3C/text%3E%3C/svg%3E'" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">O Alienista</div>
+            <div class="card-author-sm">Machado de Assis</div>
+            <div class="card-stars">★★★★☆</div>
+            <button class="card-btn">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-wrap">
+            <span class="card-badge disponivel">Disponível</span>
+            <img src="../imagens/capas-livros/capa6.png" alt="1984"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22 fill=%22%23252538%22%3E%3Crect width=%22200%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344446a%22 font-size=%2214%22%3ESem capa%3C/text%3E%3C/svg%3E'" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">1984</div>
+            <div class="card-author-sm">George Orwell</div>
+            <div class="card-stars">★★★★★</div>
+            <button class="card-btn">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-wrap">
+            <span class="card-badge emprestar">Emprestar</span>
+            <img src="../imagens/capas-livros/capa4.png" alt="Cem Anos de Solidão"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22 fill=%22%23252538%22%3E%3Crect width=%22200%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344446a%22 font-size=%2214%22%3ESem capa%3C/text%3E%3C/svg%3E'" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Cem Anos de Solidão</div>
+            <div class="card-author-sm">Gabriel García Márquez</div>
+            <div class="card-stars">★★★★★</div>
+            <button class="card-btn">Ver detalhes</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-img-wrap">
+            <span class="card-badge doacao">Doação</span>
+            <img src="../imagens/capas-livros/capa5.png" alt="Dom Casmurro"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22280%22 fill=%22%23252538%22%3E%3Crect width=%22200%22 height=%22280%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22%2344446a%22 font-size=%2214%22%3ESem capa%3C/text%3E%3C/svg%3E'" />
+          </div>
+          <div class="card-body">
+            <div class="card-title">Dom Casmurro</div>
+            <div class="card-author-sm">Machado de Assis</div>
+            <div class="card-stars">★★★★☆</div>
+            <button class="card-btn">Ver detalhes</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+</body>
+</html>
