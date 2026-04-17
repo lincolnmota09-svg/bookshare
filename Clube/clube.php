@@ -17,8 +17,8 @@
       </div>
 
       <nav class="nav-desktop">
-        <a href="../Home/inicio.php" class="active">Início</a>
-        <a href="../Clube/clube.php">Clube</a> 
+        <a href="../Home/inicio.php" >Início</a>
+        <a href="../Clube/clube.php" class="active">Clube</a> 
         <a href="../Emprestar/emprestar.php">Emprestar</a>
         <a href="../Perfil/perfil.html.php">Perfil</a>
       </nav>
@@ -53,8 +53,8 @@
 
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu">
-    <a href="../Home/inicio.php" class="active">início</a>
-    <a href="../Clube/clube.php">Clube</a> 
+    <início href="../Home/inicio.php" >início</a>
+    <a href="../Clube/clube.php" class="active">Clube</a> 
     <a href="../Emprestar/emprestar.php">Emprestar</a>
     <a href="../Perfil/perfil.php">Perfil</a>
 
@@ -79,7 +79,7 @@
   
     <div class="btn-escolha">
       <a href="clube.php" class="btn-escolha-personalizado">Entrar em um clube</a>
-      <a href="criar_clube.php" id="btn-escolha-personalizado-outline">Criar um clube</a>
+      <a href="criarClube.php" id="btn-escolha-personalizado-outline">Criar um clube</a>
     </div>
   </div>    
   
