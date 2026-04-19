@@ -300,6 +300,10 @@ body {
   border: 1px solid #3a3a3c;
 }
 
+.card statuss span{
+  color:white;
+}
+
 /* ================================
    BUTTON
 ================================ */
