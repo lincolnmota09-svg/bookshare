@@ -378,3 +378,72 @@ nav a.active:hover {
   .hamburger  { display: flex; }
   .search-box { display: none; }
 }
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 55%, #0f3460 100%);
+  padding: 80px 24px 68px;
+  border-bottom: 1px solid #2a2a3e;
+  text-align: center;
+}
+
+#titulo {
+  font-size: clamp(26px, 5vw, 52px);
+  font-weight: 800;
+  color: white;
+}
+
+#subtitulo {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #7070a0;
+}
+
+.btn-escolha {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* --- BOTÕES --- */
+.btn-escolha-personalizado {
+  padding: 12px 28px;
+  background-color: #4a4aff;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all .2s;
+  text-decoration: none;
+}
+
+#btn-escolha-personalizado-outline {
+  padding: 12px 28px;
+  background: transparent;
+  color: #a0a0c0;
+  border: 1px solid #3a3a55;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-block;
+  transition: all .2s;
+  text-decoration: none;
+}
+
+.btn-escolha-personalizado:hover{
+  transform: translateY(-2px);
+  background-color: #3a3aee;
+}
+
+#btn-escolha-personalizado-outline:hover{
+  transform: translateY(-2px);
+  border-color: rgb(61, 59, 219);
+}

@@ -220,7 +220,7 @@ include('../php/verificar.php');
                 <span class="tag">Recomendações</span>
                 <span class="tag">Online</span>
               </div>
-              <button class="btn-details">Ver clube</button>
+              <a href="romanticos.php"><button class="btn-details">Ver clube</button></a>
             </div>
           </div>
 

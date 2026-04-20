@@ -98,7 +98,7 @@
       <div class="cards-row">
 
         <!-- Card 1 -->
-        <div class="card">
+        <a href="romanticos.php"><div class="card">
           <div class="card-banner" style="background: linear-gradient(135deg, #1a1a2e, #16213e);">
             <div class="club-icon">🎮</div>
             <div class="club-initials">GG</div>
@@ -122,6 +122,7 @@
             <button class="btn-details">Ver clube</button>
           </div>
         </div>
+        </a>
 
       </div>
     </section>
@@ -138,8 +139,8 @@
 
       <div class="cards-row">
 
-        <!-- Card 1 -->
-        <div class="card">
+        <!-- Card 2 -->
+        <a href="Leitores de CS"><div class="card">
           <div class="card-banner" style="background: linear-gradient(135deg, #2d6a4f, #52b788);">
             <div class="club-icon">📚</div>
             <div class="club-initials">LC</div>
@@ -163,6 +164,7 @@
             <button class="btn-details">Ver clube</button>
           </div>
         </div>
+        </a>
 
       </div>
     </section>

@@ -233,6 +233,11 @@ body {
 /* ================================
    CARD BODY
 ================================ */
+
+a{
+  text-decoration: none;
+}
+
 .card-body {
   padding: 16px;
   display: flex;

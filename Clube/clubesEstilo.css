@@ -1,0 +1,411 @@
+
+    body{
+        background-color: #e4e4e4;
+    }
+
+    /* ========================
+       CONTAINER PRINCIPAL
+    ======================== */
+    .clube-page {
+      margin:70px auto;
+      width: 100%;
+      max-width: 680px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #1e2138;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    /* ========================
+       BANNER
+    ======================== */
+    .clube-banner {
+      position: relative;
+      height: 220px;
+      background: linear-gradient(135deg, #1a1c2e 0%, #2a2f5a 50%, #1e2138 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .clube-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(100, 120, 255, 0.15) 0%, transparent 70%);
+    }
+
+    .banner-inner {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .clube-icon-wrap {
+      width: 72px;
+      height: 72px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    .clube-banner h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.3px;
+    }
+
+    .clube-banner p {
+      font-size: 13px;
+      color: #8a90b0;
+    }
+
+    /* ========================
+       INFO BAR
+    ======================== */
+    .clube-info {
+      padding: 20px 24px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .info-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .membros-count {
+      font-size: 13px;
+      color: #8a90b0;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .membros-count svg {
+      width: 15px;
+      height: 15px;
+      fill: #5b7bd5;
+    }
+
+    .membros-count strong {
+      color: #c0c8e8;
+      font-weight: 600;
+    }
+
+    .dot {
+      color: #3a3f5e;
+      font-size: 16px;
+    }
+
+    .badge-aberto {
+      background: rgba(80, 200, 120, 0.12);
+      color: #50c878;
+      border: 1px solid rgba(80, 200, 120, 0.25);
+      border-radius: 20px;
+      padding: 2px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    /* Criador */
+    .criador-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .criador-row img {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #3a3f5e;
+    }
+
+    .criador-row span {
+      font-size: 13px;
+      color: #8a90b0;
+    }
+
+    .criador-row strong {
+      color: #c0c8e8;
+      font-weight: 600;
+    }
+
+    /* Tags */
+    .tags-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      padding-bottom: 4px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 20px;
+      padding: 4px 13px;
+      font-size: 12px;
+      color: #8a90b0;
+      cursor: default;
+      transition: background 0.2s;
+    }
+
+    .tag:hover {
+      background: rgba(255,255,255,0.09);
+      color: #c0c8e8;
+    }
+
+    /* ========================
+       DIVIDER
+    ======================== */
+    .divider {
+      margin: 20px 24px 0;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    /* ========================
+       JOIN SECTION
+    ======================== */
+    .join-section {
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .join-text {
+      font-size: 13px;
+      color: #6a70a0;
+      line-height: 1.5;
+    }
+
+    .join-text span {
+      color: #8a90b0;
+    }
+
+    .btn-entrar {
+      background: linear-gradient(135deg, #4f6ef7, #7b5cf5);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 11px 26px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 16px rgba(79, 110, 247, 0.35);
+    }
+
+    .btn-entrar:hover:not(:disabled) {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .btn-entrar:active:not(:disabled) {
+      transform: translateY(0);
+    }
+
+    .btn-entrar.membro {
+      background: rgba(80, 200, 120, 0.12);
+      color: #50c878;
+      border: 1px solid rgba(80, 200, 120, 0.3);
+      box-shadow: none;
+      cursor: default;
+    }
+
+    /* ========================
+       CHAT
+    ======================== */
+    .clube-chat {
+      margin: 0 24px 24px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .chat-header {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #8a90b0;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+    }
+
+    .chat-header span.dot-live {
+      width: 7px;
+      height: 7px;
+      background: #50c878;
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 6px #50c878;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* Mensagens */
+    .chat-mensagens {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      max-height: 300px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .chat-mensagens::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .chat-mensagens::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .chat-mensagens::-webkit-scrollbar-thumb {
+      background: rgba(255,255,255,0.1);
+      border-radius: 4px;
+    }
+
+    .msg {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .msg.msg-own .msg-body {
+      background: rgba(79, 110, 247, 0.12);
+      border: 1px solid rgba(79, 110, 247, 0.2);
+    }
+
+    .msg-avatar {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 2px solid rgba(255,255,255,0.08);
+    }
+
+    .msg-body {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px;
+      border-top-left-radius: 4px;
+      padding: 8px 13px;
+      max-width: 80%;
+    }
+
+    .msg-user {
+      font-size: 11px;
+      font-weight: 700;
+      color: #7b8ac8;
+      display: block;
+      margin-bottom: 3px;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+    }
+
+    .msg-text {
+      font-size: 13.5px;
+      color: #c8ceec;
+      line-height: 1.5;
+    }
+
+    /* Input de chat */
+    .chat-input-area {
+      padding: 12px 16px;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .chat-locked {
+      text-align: center;
+      font-size: 12.5px;
+      color: #4a5070;
+      padding: 8px 0;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13.5px;
+      color: #e0e0e0;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .chat-input-row input::placeholder {
+      color: #4a5070;
+    }
+
+    .chat-input-row input:focus {
+      border-color: rgba(79, 110, 247, 0.5);
+    }
+
+    .chat-input-row button {
+      background: linear-gradient(135deg, #4f6ef7, #7b5cf5);
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .chat-input-row button:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* Scroll suave ao aparecer mensagem própria */
+    .msg.msg-own .msg-user {
+      color: #9baaf5;
+    }
